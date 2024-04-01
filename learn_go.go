@@ -11,6 +11,8 @@ import (
 
 // run with go run learn_go.go
 // format this file go fmt learn_go.go
+// how to write go code: https://go.dev/doc/code
+// how to write effective go code: https://go.dev/doc/effective_go
 
 func main() {
 	me()
