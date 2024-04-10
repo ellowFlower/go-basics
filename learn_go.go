@@ -9,6 +9,10 @@ import (
 	"time"
 )
 
+// CREATE MODULE
+// go mod init <module name>
+// go mod tidy
+
 // run with go run learn_go.go
 // format this file go fmt learn_go.go
 // how to write go code: https://go.dev/doc/code
