@@ -8,3 +8,5 @@ Executable source files must always use `package main` with a `main` function.
 
 Fields and methods are only exported if the first letter is uppercase.
 
+# Idiomatics
+Local variable declaration inside for loop definition not before
