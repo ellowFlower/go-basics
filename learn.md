@@ -1,6 +1,8 @@
 # Project setup
 Go programs are structured in: `repository -> modules -> packages -> source files`
 
+Run single go file with `go run <filename>`
+
 1. create `go.mod` file: `go mod init <module path>`
 2. build and install a program: `go install <module path>` (binary at `$HOME/go/bin/`) 
 
