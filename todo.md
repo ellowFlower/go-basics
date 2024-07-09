@@ -1,2 +1,5 @@
- finish effective go: Functions Multiple return values; figure out why program does not terminate
+ finish effective go: Functions Multiple return values;
+
+go language tools when to use what
+
  create cheat sheet for data types

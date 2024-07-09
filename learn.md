@@ -1,4 +1,5 @@
-# Project setup
+# Idiomatics
+## Project setup
 Go programs are structured in: `repository -> modules -> packages -> source files`
 
 Run single go file with `go run <filename>`
@@ -14,19 +15,17 @@ Use always full package name to import, for remote ones the module has to be dow
 
 Module dependencies are downloaded to pkg/mod indicated by the GOPATH environment variable. Remove all downloaded modules: `go clean -modcache` 
 
-# Idiomatics
+## Writing style
 Format code with `go fmt`
 
 Local variable declaration inside if or for loop definition not before.
 
 It's idiomatic—to write an if-else-if-else chain as a switch.
 
-# Testing
-Test files ending in `_test.go`, functions are named TestXXX with signature `func (t *testing.T).
+With multiple return values use return value names and an unadorned `return`
 
-Run tests with `go test`
+Idiomatic slice allocation: `v := make([]int, 100)`
 
-# Names
 Use MixedCaps or mixedCaps
 
 Use the package structure to help you choose good names, use single-word names. A helpful doc comment can be more valuable than an extra long name.
@@ -34,6 +33,66 @@ Use the package structure to help you choose good names, use single-word names. 
 Getter have no "get".
 
 One-method interfaces are named by the method name plus an -er suffix or similar modification to construct an agent noun: Reader
+
+Test files ending in `_test.go`, functions are named TestXXX with signature `func (t *testing.T).
+
+Run tests with `go test`
+
+## Data
+New allocation, `New(T)`, returns a pointer to a newly allocated zero value of type T
+
+Composite literals create a new instance: T{...}
+
+Constructores should be in the form `func NewT(...) \*T`
+
+Make allocation, `make(T, args)`, creates slices, maps and channels only. Returns an initialized value of type T
+
+Use "comma ok" idiom to distinguish missing entries from zero values
+
+Use slices over arrays
+
+
+# Data types
+## Arrays
+Arrays are useful when planning the detailed layout of memory, but primarily they are a building block for slices.
+
+## Slices
+Slices wrap arrays to give a more general, powerful, and convenient interface to sequences of data.
+
+### Two-dimensional slices
+Diffferent ways to create:
+```go
+type Text [][]byte
+t := Text{
+    []byte("Hello"),
+    []byte("World),
+}
+
+p := make([][]uint8, YSize)
+for i := range p {
+    p[i] = make([]uint8, XSize)
+}
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
