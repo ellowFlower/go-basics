@@ -53,13 +53,13 @@ Use slices over arrays
 
 
 # Data types
-## Arrays
+## Array
 Arrays are useful when planning the detailed layout of memory, but primarily they are a building block for slices.
 
-## Slices
+## Slice
 Slices wrap arrays to give a more general, powerful, and convenient interface to sequences of data.
 
-### Two-dimensional slices
+### Two-dimensional slice
 Diffferent ways to create:
 ```go
 type Text [][]byte
@@ -72,10 +72,71 @@ p := make([][]uint8, YSize)
 for i := range p {
     p[i] = make([]uint8, XSize)
 }
+```
+### Map
+Create:
+```go
+// initialize
+t := make(map[string]int)
+t := map[string]int{}
 
+// initialize with data
+t := map[string]int{
+    "UTC": 0,
+    "EST": 1,
+}
 
+// add value
+t["aaa"] = 2
+
+// retrieve value; key not exists => zero value
+x := t["aaa"]
+
+// delete value
+delete(t, "UTC")
+
+// length
+len(t)
+
+// test key exists
+value, ok := t["aaa"]
+
+// iterate not ordered
+for key, value := range t {
+}
+
+// iterate ordered
+m := map[int]string{2: "2", 1: "1"}
+var keys []int
+for k := range m {
+    keys = append(keys, k)
+}
+sort.Ints(keys)
+for _, k := range keys {
+    fmt.Println("Key:", k, "Value:", m[k])
+}
+
+// concurrent use
+var c = struct{
+    sync.RWMutex
+    m map[string]int
+}{m: make(map[string]int)}
+// concurrent read
+c.RLock()
+n := counter.m["someKey"]
+c.RUnlock()
+//concurrent write
+c.Lock()
+c.m["someKey"]++
+c.Unlock()
 ```
 
+## Set
+Use bool maps.
+```go
+// set of strings
+s := make(map[string]bool)
+```
 
 
 
