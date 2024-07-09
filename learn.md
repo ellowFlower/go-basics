@@ -51,6 +51,8 @@ Use "comma ok" idiom to distinguish missing entries from zero values
 
 Use slices over arrays
 
+Source file can define `init` function. `init` is called after all variable declarations and importing of packages
+
 
 # Data types
 ## Array
@@ -73,7 +75,7 @@ for i := range p {
     p[i] = make([]uint8, XSize)
 }
 ```
-### Map
+## Map
 ```go
 // initialize
 t := make(map[string]int)
@@ -130,11 +132,21 @@ c.m["someKey"]++
 c.Unlock()
 ```
 
-## Set
+### Set
 Use bool maps.
 ```go
 // set of strings
 s := make(map[string]bool)
+```
+
+## Enumerated constants
+```go
+type ByteSize float64
+const (
+    _ = iota // iota starts at 0 and +1 for every new constant => _ = 0, KB = 1, MB = 2
+    KB ByteSize = iota
+    MB
+)
 ```
 
 
