@@ -74,7 +74,6 @@ for i := range p {
 }
 ```
 ### Map
-Create:
 ```go
 // initialize
 t := make(map[string]int)
