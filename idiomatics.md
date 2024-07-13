@@ -24,8 +24,6 @@ It's idiomatic—to write an if-else-if-else chain as a switch.
 
 With multiple return values use return value names and an unadorned `return`
 
-Idiomatic slice allocation: `v := make([]int, 100)`
-
 Use MixedCaps or mixedCaps
 
 Use the package structure to help you choose good names, use single-word names. A helpful doc comment can be more valuable than an extra long name.
@@ -38,12 +36,14 @@ Test files ending in `_test.go`, functions are named TestXXX with signature `fun
 
 Run tests with `go test`
 
+An empty interface may hold values of any type
+
 ## Data
 New allocation, `New(T)`, returns a pointer to a newly allocated zero value of type T
 
 Composite literals create a new instance: T{...}
 
-Constructores should be in the form `func NewT(...) \*T`
+Constructores should be in the form `func NewT(...)`
 
 Make allocation, `make(T, args)`, creates slices, maps and channels only. Returns an initialized value of type T
 
@@ -53,101 +53,8 @@ Use slices over arrays
 
 Source file can define `init` function. `init` is called after all variable declarations and importing of packages
 
+Use pointer methods when modifying the receiver
 
-# Data types
-## Array
-Arrays are useful when planning the detailed layout of memory, but primarily they are a building block for slices.
-
-## Slice
-Slices wrap arrays to give a more general, powerful, and convenient interface to sequences of data.
-
-### Two-dimensional slice
-Diffferent ways to create:
-```go
-type Text [][]byte
-t := Text{
-    []byte("Hello"),
-    []byte("World),
-}
-
-p := make([][]uint8, YSize)
-for i := range p {
-    p[i] = make([]uint8, XSize)
-}
-```
-## Map
-```go
-// initialize
-t := make(map[string]int)
-t := map[string]int{}
-
-// initialize with data
-t := map[string]int{
-    "UTC": 0,
-    "EST": 1,
-}
-
-// add value
-t["aaa"] = 2
-
-// retrieve value; key not exists => zero value
-x := t["aaa"]
-
-// delete value
-delete(t, "UTC")
-
-// length
-len(t)
-
-// test key exists
-value, ok := t["aaa"]
-
-// iterate not ordered
-for key, value := range t {
-}
-
-// iterate ordered
-m := map[int]string{2: "2", 1: "1"}
-var keys []int
-for k := range m {
-    keys = append(keys, k)
-}
-sort.Ints(keys)
-for _, k := range keys {
-    fmt.Println("Key:", k, "Value:", m[k])
-}
-
-// concurrent use
-var c = struct{
-    sync.RWMutex
-    m map[string]int
-}{m: make(map[string]int)}
-// concurrent read
-c.RLock()
-n := counter.m["someKey"]
-c.RUnlock()
-//concurrent write
-c.Lock()
-c.m["someKey"]++
-c.Unlock()
-```
-
-### Set
-Use bool maps.
-```go
-// set of strings
-s := make(map[string]bool)
-```
-
-## Enumerated constants
-```go
-type ByteSize float64
-const (
-    _ = iota // iota starts at 0 and +1 for every new constant => _ = 0, KB = 1, MB = 2
-    KB ByteSize = iota
-    MB
-)
-```
 
 
 

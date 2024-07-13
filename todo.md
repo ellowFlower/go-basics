@@ -1,5 +1,10 @@
-finish effective go: Methods Pointers vs. Values
+goroutines
 
 go language tools when to use what
 
-create cheat sheet for data types
+generics
+
+leetcode problems
+
+project
+
